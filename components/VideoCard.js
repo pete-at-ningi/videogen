@@ -90,7 +90,18 @@ const VideoLink = styled.a`
 
 export default function VideoCard({ video }) {
   const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
+    if (!dateString) return 'Unknown';
+
+    // Handle Unix timestamps (numbers) and ISO strings
+    const date =
+      typeof dateString === 'number'
+        ? new Date(dateString * 1000) // Convert Unix timestamp to milliseconds
+        : new Date(dateString);
+
+    // Check if date is valid
+    if (isNaN(date.getTime())) return 'Invalid Date';
+
+    return date.toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'short',
       day: 'numeric',

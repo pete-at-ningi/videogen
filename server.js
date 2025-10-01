@@ -26,22 +26,31 @@ nextApp.prepare().then(() => {
           .json({ error: 'Synthesia API key not configured' });
       }
 
+      const requestBody = {
+        title: title || 'Generated Video',
+        test: true, // Remove this line for production to avoid using credits
+        input: [
+          {
+            scriptText: script,
+            avatar: avatar || 'anna_costume1_cameraA',
+            background: background || 'green_screen',
+          },
+        ],
+      };
+
+      console.log(
+        'Sending request to Synthesia API:',
+        JSON.stringify(requestBody, null, 2)
+      );
+
       const response = await fetch('https://api.synthesia.io/v2/videos', {
         method: 'POST',
         headers: {
           Authorization: `${process.env.SYNTHESIA_API_KEY}`,
           'Content-Type': 'application/json',
+          Accept: 'application/json',
         },
-        body: JSON.stringify({
-          title: title || 'Generated Video',
-          script: [
-            {
-              text: script,
-              avatar: avatar || 'anna_costume1_cameraA',
-              background: background || 'green_screen',
-            },
-          ],
-        }),
+        body: JSON.stringify(requestBody),
       });
 
       if (!response.ok) {
