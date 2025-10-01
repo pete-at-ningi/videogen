@@ -1,0 +1,33 @@
+{
+  "name": "synthesia-video-generator",
+  "version": "1.0.0",
+  "description": "Video generation app using Synthesia API",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "next": "^14.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "styled-components": "^6.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.0",
+    "eslint-config-next": "^14.0.0"
+  },
+  "keywords": [
+    "video",
+    "synthesia",
+    "ai",
+    "generation"
+  ],
+  "author": "",
+  "license": "MIT"
+}
